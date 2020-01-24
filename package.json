@@ -1,0 +1,32 @@
+{
+  "name": "ob-api-demo-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start-proxy": "node proxy",
+    "dev": "export PROXY_ENV=DEV && concurrently --kill-others \"npm run start-proxy\" \"nodemon dist\" \"tsc --watch\"",
+    "tsc": "tsc",
+    "serve": "nodemon dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "5.0.2",
+    "@types/body-parser": "1.17.0",
+    "@types/express": "4.16.1",
+    "@types/node": "11.9.4",
+    "body-parser": "1.18.3",
+    "cors": "2.8.5",
+    "express": "4.16.4",
+    "nodemon": "1.18.10",
+    "tsc": "1.20150623.0",
+    "typescript": "3.3.3"
+  },
+  "dependencies": {
+    "http-proxy": "1.18.0",
+    "rxjs": "6.4.0",
+    "xmlhttprequest": "1.8.0"
+  }
+}

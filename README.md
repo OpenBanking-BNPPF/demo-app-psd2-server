@@ -22,7 +22,8 @@ example of a configuration used to connect to the test environment of the sandbo
 ```typescript
 const appConfig = {
     authURL: 'https://sandbox.auth.tstbnpparibasfortis.com',
-    apiURL: 'https://sandbox.api.tstbnpparibasfortis.com',
+    // API url is url of proxy, as we have SSL-MA
+    apiURL: 'http://127.0.0.1:9000',
     organization: 'ede7eede-211b-47ab-8dde-a3d8e0023351',
     stetVersion: '1.4.0.47.develop',
     clientId: 'ec38b391-5ec2-4cca-87e4-93f46cef8b3b',
