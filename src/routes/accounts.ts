@@ -14,7 +14,6 @@ export default class AccountsRouter {
             .get('/', (req: Request, res: Response) => {
                 const accessToken = req.headers.authorization;
                 const brand = req.query.brand;
-                console.log('AccountsRouter / brand=',brand)
                 this.getAccounts(accessToken, brand).subscribe(
                     accounts => res.send(accounts),
                     err => res.status(500).send(err)
@@ -75,7 +74,6 @@ export default class AccountsRouter {
     }
 
     static getAccounts(accessToken, brand) {
-        console.log(`getAccounts ${brand}`)
         const options = {
             method: 'GET',
             url: `${appConfig.apiURL}/psd2/v1/accounts?brand=${brand}`,

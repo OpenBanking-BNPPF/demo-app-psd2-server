@@ -18,14 +18,15 @@ export default class PaymentRouter {
                 )
             })
             .post('/make', (req: Request, res: Response) => {
-                this.makePayment(req.body).subscribe(
+                const brand = req.query.brand;
+                this.makePayment(req.body, brand).subscribe(
                     resp => res.send(resp),
                     err => res.status(err.status).send(err)
                 )
             })
     }
 
-    static makePayment(body) {
+    static makePayment(body, brand) {
         const now = new Date();
         const data = {
             "paymentInformationId": "MyPmtInfId",
@@ -132,7 +133,7 @@ export default class PaymentRouter {
         };
         const options = {
             method: 'POST',
-            url: `${appConfig.apiURL}/v1/payment-requests`,
+            url: `${appConfig.apiURL}/psd2/v1/payment-requests?brand=${brand}`,
             headers: {
                 'Authorization': `bearer ${body.access_token}`,
                 'Content-Type': 'application/json',
