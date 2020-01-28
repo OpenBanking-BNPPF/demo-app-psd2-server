@@ -2,7 +2,7 @@ import {Router, Request, Response} from 'express';
 import {ajax} from 'rxjs/ajax';
 import {map, catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
-import {appConfig} from '../config/config';
+import {appConfig} from '../config'; 
 import * as xMLHttpRequest from 'xmlhttprequest';
 
 const XMLHttpRequest = xMLHttpRequest.XMLHttpRequest;

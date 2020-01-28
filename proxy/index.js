@@ -2,7 +2,7 @@ const httpProxy = require('http-proxy')
 const fs = require('fs')
 
 function start () {
-  console.log('Starting Proxy on: ', process.env.PROXY_ENV)
+  console.log('Starting Proxy on: ', process.env.SANDBOX_ENV)
   try {
     const proxyOptions = {
       DEV: {
@@ -21,10 +21,10 @@ function start () {
     const proxy = httpProxy.createProxyServer({
       target: {
         protocol: 'https:',
-        host: proxyOptions[ process.env.PROXY_ENV ].targetHost,
+        host: proxyOptions[ process.env.SANDBOX_ENV ].targetHost,
         port: 443,
-        cert: fs.readFileSync(`${__dirname}/cert/${process.env.PROXY_ENV.toLowerCase()}/cert.pem`, 'utf8'),
-        key: fs.readFileSync(`${__dirname}/cert/${process.env.PROXY_ENV.toLowerCase()}/key.pem`, 'utf8'),
+        cert: fs.readFileSync(`${__dirname}/cert/${process.env.SANDBOX_ENV.toLowerCase()}/cert.pem`, 'utf8'),
+        key: fs.readFileSync(`${__dirname}/cert/${process.env.SANDBOX_ENV.toLowerCase()}/key.pem`, 'utf8'),
       },
       changeOrigin: true,
       timeout: 5000,

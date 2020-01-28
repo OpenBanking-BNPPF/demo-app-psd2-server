@@ -1,7 +1,7 @@
 import {Router, Request, Response} from 'express';
 import {ajax} from 'rxjs/ajax';
 import {map} from 'rxjs/operators';
-import {appConfig} from '../config/config';
+import {appConfig} from '../config';
 import {catchError} from 'rxjs/internal/operators';
 import {throwError} from 'rxjs';
 import * as xMLHttpRequest from 'xmlhttprequest';

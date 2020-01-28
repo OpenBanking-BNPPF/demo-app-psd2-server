@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "start-proxy": "node proxy",
-    "dev": "export PROXY_ENV=DEV && concurrently --kill-others \"npm run start-proxy\" \"nodemon dist\" \"tsc --watch\"",
+    "dev": "export SANDBOX_ENV=DEV && concurrently --kill-others \"npm run start-proxy\" \"nodemon dist\" \"tsc --watch\"",
+    "tst": "export SANDBOX_ENV=TST && concurrently --kill-others \"npm run start-proxy\" \"nodemon dist\" \"tsc --watch\"",
     "tsc": "tsc",
     "serve": "nodemon dist"
   },
