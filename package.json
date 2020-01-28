@@ -8,6 +8,8 @@
     "start-proxy": "node proxy",
     "dev": "export SANDBOX_ENV=DEV && concurrently --kill-others \"npm run start-proxy\" \"nodemon dist\" \"tsc --watch\"",
     "tst": "export SANDBOX_ENV=TST && concurrently --kill-others \"npm run start-proxy\" \"nodemon dist\" \"tsc --watch\"",
+    "qa": "export SANDBOX_ENV=QA && concurrently --kill-others \"npm run start-proxy\" \"nodemon dist\" \"tsc --watch\"",
+    "prod": "export SANDBOX_ENV=PROD && concurrently --kill-others \"npm run start-proxy\" \"nodemon dist\"",
     "tsc": "tsc",
     "serve": "nodemon dist"
   },
