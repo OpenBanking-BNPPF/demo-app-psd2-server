@@ -135,7 +135,7 @@ export default class PaymentRouter {
             method: 'POST',
             url: `${appConfig.apiURL}/psd2/v1/payment-requests?brand=${brand}`,
             headers: {
-                'Authorization': `bearer ${body.access_token}`,
+                'Authorization': `Bearer ${body.access_token}`,
                 'Content-Type': 'application/json',
                 'X-Openbank-Organization': appConfig.organization,
                 'X-Openbank-Stet-Version': appConfig.stetVersion,
