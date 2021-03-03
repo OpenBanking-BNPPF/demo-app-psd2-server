@@ -1,3 +1,6 @@
 .DS_Store
 dist
 node_modules
+
+proxy/cert
+src/config/envs.ts

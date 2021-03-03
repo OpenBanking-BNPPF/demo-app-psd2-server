@@ -37,12 +37,11 @@ export default class AuthRouter {
             method: 'POST',
             url: `${appConfig.authURL}/token`,
             headers: {
-                'content-type': 'multipart/form-data;',
-                'X-Openbank-Organization': appConfig.organization,
-                'X-Openbank-Stet-Version': appConfig.stetVersion
+                'content-type': 'application/json',
             },
             createXHR: () => new XMLHttpRequest(),
-            body: JSON.stringify(formData),
+            //body: JSON.stringify(formData),
+            body: formData,
         };
         return ajax(options).pipe(
             map(data => data.response),

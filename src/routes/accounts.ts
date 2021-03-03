@@ -76,11 +76,9 @@ export default class AccountsRouter {
     static getAccounts(accessToken, brand) {
         const options = {
             method: 'GET',
-            url: `${appConfig.apiURL}/psd2/v1/accounts?brand=${brand}`,
+            url: `${appConfig.apiURL}/psd2/v2/accounts?brand=${brand}`,
             headers: {
                 'Authorization': `${accessToken}`,
-                'X-Openbank-Organization': appConfig.organization,
-                'X-Openbank-Stet-Version': appConfig.stetVersion,
                 'Signature': 'toto',
                 'X-Request-ID': 'toto'
             },

@@ -24,10 +24,8 @@ const appConfig = {
     authURL: 'https://sandbox.auth.tstbnpparibasfortis.com',
     // API url is url of proxy, as we have SSL-MA
     apiURL: 'http://127.0.0.1:9000',
-    organization: 'ede7eede-211b-47ab-8dde-a3d8e0023351',
-    stetVersion: '1.4.0.47.develop',
-    clientId: 'ec38b391-5ec2-4cca-87e4-93f46cef8b3b',
-    clientSecret: 'c66b22181c802bc94ae1d248fa20894c9d1f6e444346a56abae6eb66934c98eb9fdd9463df799dce5ae47982a29132ce',
+    clientId: 'my-client-id',
+    clientSecret: 'my-client-secret',
     redirectURI: 'http://127.0.0.1:8090/auth',
     scope: 'aisp',
     state: 'toto'

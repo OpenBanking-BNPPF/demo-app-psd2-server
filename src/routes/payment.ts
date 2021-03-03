@@ -133,12 +133,10 @@ export default class PaymentRouter {
         };
         const options = {
             method: 'POST',
-            url: `${appConfig.apiURL}/psd2/v1/payment-requests?brand=${brand}`,
+            url: `${appConfig.apiURL}/psd2/v2/payment-requests?brand=${brand}`,
             headers: {
                 'Authorization': `Bearer ${body.access_token}`,
                 'Content-Type': 'application/json',
-                'X-Openbank-Organization': appConfig.organization,
-                'X-Openbank-Stet-Version': appConfig.stetVersion,
                 'Signature': '<Base64(RSA-SHA256(signing string))>',
                 'X-Request-ID': '<X-Request-ID>'
             },
