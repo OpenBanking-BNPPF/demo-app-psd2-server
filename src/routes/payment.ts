@@ -1,8 +1,8 @@
-import {Router, Request, Response} from 'express';
-import {ajax} from 'rxjs/ajax';
-import {map, catchError} from 'rxjs/operators';
-import {throwError} from 'rxjs';
-import {appConfig} from '../config';
+import { Router, Request, Response } from 'express';
+import { ajax } from 'rxjs/ajax';
+import { map, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { appConfig } from '../config';
 import * as xMLHttpRequest from 'xmlhttprequest';
 
 const XMLHttpRequest = xMLHttpRequest.XMLHttpRequest;
@@ -28,10 +28,11 @@ export default class PaymentRouter {
 
     static makePayment(body, brand) {
         const now = new Date();
+
         const data = {
             "paymentInformationId": "MyPmtInfId",
-            "creationDateTime": now,
-            "requestedExecutionDate": now,
+            "creationDateTime": now.toISOString().split('.')[0],
+            "requestedExecutionDate": now.toISOString().split('T')[0],
             "numberOfTransactions": 1,
             "initiatingParty": {
                 "name": "DemoApp",
@@ -117,9 +118,11 @@ export default class PaymentRouter {
                         "currency": "EUR",
                         "amount": `${body.amount}`
                     },
-                    "remittanceInformation": [
-                        body.remittanceInformation
-                    ]
+                    "remittanceInformation": {
+                        "unstructured": [
+                            body.remittanceInformation
+                        ]
+                    }
                 }
             ],
             "supplementaryData": {
@@ -143,9 +146,12 @@ export default class PaymentRouter {
             body: JSON.stringify(data),
             createXHR: () => new XMLHttpRequest()
         };
-        
+
         return ajax(options).pipe(
-            map(data => data.response._links.consentApproval.href),
+            map(resp => {
+                const href = resp.response._links.consentApproval.href
+                return href
+            }),
             catchError(err => {
                 console.error(err);
                 return throwError(err)
@@ -165,12 +171,12 @@ export default class PaymentRouter {
             method: 'POST',
             url: `${appConfig.authURL}/token`,
             headers: {
-                'content-type': 'multipart/form-data;',
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify(formData),
+            body: formData,
             createXHR: () => new XMLHttpRequest()
         };
-        
+
         return ajax(options).pipe(
             map(data => data.response),
             catchError(err => {
