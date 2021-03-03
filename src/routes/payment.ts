@@ -166,8 +166,6 @@ export default class PaymentRouter {
             url: `${appConfig.authURL}/token`,
             headers: {
                 'content-type': 'multipart/form-data;',
-                'X-Openbank-Organization': appConfig.organization,
-                'X-Openbank-Stet-Version': appConfig.stetVersion
             },
             body: JSON.stringify(formData),
             createXHR: () => new XMLHttpRequest()

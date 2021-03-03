@@ -37,7 +37,7 @@ export default class AuthRouter {
             method: 'POST',
             url: `${appConfig.authURL}/token`,
             headers: {
-                'content-type': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
             createXHR: () => new XMLHttpRequest(),
             //body: JSON.stringify(formData),

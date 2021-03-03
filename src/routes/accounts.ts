@@ -22,7 +22,8 @@ export default class AccountsRouter {
             .get('/balances', (req: Request, res: Response) => {
                 const accessToken = req.headers.authorization;
                 const accountResourceId = req.query.accountResourceId;
-                this.getBalances(accessToken, accountResourceId).subscribe(
+                const brand = req.query.brand;
+                this.getBalances(accessToken, brand, accountResourceId).subscribe(
                     balances => res.send(balances),
                     err => res.status(500).send(err)
                 )
@@ -30,22 +31,23 @@ export default class AccountsRouter {
             .get('/transactions', (req: Request, res: Response) => {
                 const accessToken = req.headers.authorization;
                 const accountResourceId = req.query.accountResourceId;
-                this.getTransactions(accessToken, accountResourceId).subscribe(
+                const brand = req.query.brand;
+                this.getTransactions(accessToken, brand, accountResourceId).subscribe(
                     transactions => res.send(transactions),
                     err => res.status(500).send(err)
                 )
             })
     }
 
-    static getBalances(accessToken, accountResourceId) {
-        return this.getResource(`${appConfig.apiURL}/v1/accounts/${accountResourceId}/balances`, accessToken)
+    static getBalances(accessToken, brand, accountResourceId) {
+        return this.getResource(`${appConfig.apiURL}/psd2/v2/accounts/${accountResourceId}/balances?brand=${brand}`, accessToken)
             .pipe(
                 map(data => data.balances)
             )
     }
 
-    static getTransactions(accessToken, accountResourceId) {
-        return this.getResource(`${appConfig.apiURL}/v1/accounts/${accountResourceId}/transactions`, accessToken)
+    static getTransactions(accessToken, brand, accountResourceId) {
+        return this.getResource(`${appConfig.apiURL}/psd2/v2/accounts/${accountResourceId}/transactions?brand=${brand}`, accessToken)
             .pipe(
                 map(data => data && data.transactions ? data.transactions : [])
             )
@@ -57,8 +59,6 @@ export default class AccountsRouter {
             url,
             headers: {
                 'Authorization': `${accessToken}`,
-                'X-Openbank-Organization': appConfig.organization,
-                'X-Openbank-Stet-Version': appConfig.stetVersion,
                 'Signature': 'toto',
                 'X-Request-ID': 'toto'
             },
@@ -80,12 +80,16 @@ export default class AccountsRouter {
             headers: {
                 'Authorization': `${accessToken}`,
                 'Signature': 'toto',
-                'X-Request-ID': 'toto'
+                'X-Request-ID': 'toto',
             },
             createXHR: () => new XMLHttpRequest()
         };
+        console.log(JSON.stringify(options))
         return ajax(options).pipe(
-            map(data => data.response.accounts),
+            map(data => {
+                console.log(data)
+                return data.response.accounts
+            }),
             catchError(err => {
                 console.error(err);
                 return throwError(err)
