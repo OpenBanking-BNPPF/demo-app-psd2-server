@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/OpenBanking-BNPPF/demo-app-psd2-server.svg?branch=feat/psd2-v2)](https://travis-ci.org/github/OpenBanking-BNPPF/demo-app-psd2-server)
+[![Build Status](https://travis-ci.com/OpenBanking-BNPPF/demo-app-psd2-server.svg?branch=feat/psd2-v2)](https://travis-ci.com/github/OpenBanking-BNPPF/demo-app-psd2-server)
 [![Coverage Status](https://coveralls.io/repos/github/OpenBanking-BNPPF/demo-app-psd2-server/badge.svg?branch=feat/psd2-v2)](https://coveralls.io/github/OpenBanking-BNPPF/demo-app-psd2-server)
 
 # OPEN BANK API - DEMO APP
