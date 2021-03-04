@@ -39,14 +39,14 @@ export default class AccountsRouter {
             })
     }
 
-    static getBalances(accessToken, brand, accountResourceId) {
+    static getBalances(accessToken: string, brand: string, accountResourceId: string) {
         return this.getResource(`${appConfig.apiURL}/psd2/v2/accounts/${accountResourceId}/balances?brand=${brand}`, accessToken)
             .pipe(
                 map(data => data.balances)
             )
     }
 
-    static getTransactions(accessToken, brand, accountResourceId) {
+    static getTransactions(accessToken: string, brand: string, accountResourceId: string) {
         return this.getResource(`${appConfig.apiURL}/psd2/v2/accounts/${accountResourceId}/transactions?brand=${brand}`, accessToken)
             .pipe(
                 map(data => data && data.transactions ? data.transactions : [])
