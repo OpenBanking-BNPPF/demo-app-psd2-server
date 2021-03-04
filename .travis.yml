@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - node
+
+cache: npm
+
+install: npm
+
+jobs:
+  include:
+    - stage: build
+      script: 
+        - npm run test
+        - npm run lint
+        - npm audit
+        - npm run publish-coverage
