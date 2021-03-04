@@ -83,11 +83,9 @@ export default class AccountsRouter {
                 'X-Request-ID': 'toto',
             },
             createXHR: () => new XMLHttpRequest()
-        };
-        console.log(JSON.stringify(options))
+        }; 
         return ajax(options).pipe(
             map(data => {
-                console.log(data)
                 return data.response.accounts
             }),
             catchError(err => {
