@@ -1,8 +1,9 @@
 const assert = require('assert');
+const envs = require('../src/config/envs_example')
 
-describe('dummy test for Travis', function () {
+describe('Load envs', function () {
 
-	it('should run', function () {
-		assert.equal('/go/see', '/go/see');
+	it('should have PROD', function () {
+		assert.notStrictEqual(envs.PROD, null)  
 	})
 })
