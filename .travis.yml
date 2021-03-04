@@ -11,6 +11,6 @@ jobs:
     - stage: build
       script: 
         - npm run test
-        - npm run lint
+        # - npm run lint
         - npm audit
         - npm run publish-coverage
