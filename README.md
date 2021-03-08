@@ -41,7 +41,7 @@ run the node server using
 npm run build
 npm run dev
 ```
-this will start the server on port 3000
+this will start the server on port 8081 and a proxy for the api calls on port 9000
 
 ## Apis
 the server expose the following routes:
