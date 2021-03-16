@@ -4,12 +4,13 @@ import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { appConfig } from '../config';
 import * as xMLHttpRequest from 'xmlhttprequest';
+import fixtureParser from '../fixtures/Parser'
 
 const XMLHttpRequest = xMLHttpRequest.XMLHttpRequest;
 
-export default class PaymentRouter {
+class PaymentRouter {
 
-    static routes(): Router {
+    routes(): Router {
         return Router()
             .post('/auth', (req: Request, res: Response) => {
                 this.authenticateClient().subscribe(
@@ -26,114 +27,8 @@ export default class PaymentRouter {
             })
     }
 
-    static makePayment(body, brand) {
-        const now = new Date();
-
-        const data = {
-            "paymentInformationId": "MyPmtInfId",
-            "creationDateTime": now.toISOString().split('.')[0],
-            "requestedExecutionDate": now.toISOString().split('T')[0],
-            "numberOfTransactions": 1,
-            "initiatingParty": {
-                "name": "DemoApp",
-                "postalAddress": {
-                    "country": "FR",
-                    "addressLine": [
-                        "18 rue de la DSP2",
-                        "75008 PARIS"
-                    ]
-                },
-                "organisationId": {
-                    "identification": "12FR5",
-                    "schemeName": "COID",
-                    "issuer": "ACPR"
-                }
-            },
-            "paymentTypeInformation": {
-                "serviceLevel": "SEPA"
-            },
-            "debtor": {
-                "name": "Isaac Newton",
-                "postalAddress": {
-                    "country": "FR",
-                    "addressLine": [
-                        "18 rue de la DSP2",
-                        "75008 PARIS"
-                    ]
-                },
-                "privateId": {
-                    "identification": "FD37G",
-                    "schemeName": "BANK",
-                    "issuer": "BICXYYTTZZZ"
-                },
-            },
-            "debtorAccount": {
-                "iban": body.debtorAccount
-            },
-            "beneficiary": {
-                "creditor": {
-                    "name": `${body.beneficiaryName}`,
-                    "postalAddress": {
-                        "country": "FR",
-                        "addressLine": [
-                            "18 rue de la DSP2",
-                            "75008 PARIS"
-                        ]
-                    },
-                    "organisationId": {
-                        "identification": "852126789",
-                        "schemeName": "SREN",
-                        "issuer": "FR"
-                    }
-                },
-                "creditorAccount": {
-                    "iban": `${body.beneficiaryAccount}`
-                }
-            },
-            "ultimateCreditor": {
-                "name": "myPreferedUltimateMerchant",
-                "postalAddress": {
-                    "country": "FR",
-                    "addressLine": [
-                        "18 rue de la DSP2",
-                        "75008 PARIS"
-                    ]
-                },
-                "organisationId": {
-                    "identification": "85212678900025",
-                    "schemeName": "SRET",
-                    "issuer": "FR"
-                }
-            },
-            "purpose": "COMC",
-            "chargeBearer": "SLEV",
-            "creditTransferTransaction": [
-                {
-                    "paymentId": {
-                        "instructionId": "MyInstrId",
-                        "endToEndId": "MyEndToEndId"
-                    },
-
-                    "instructedAmount": {
-                        "currency": "EUR",
-                        "amount": `${body.amount}`
-                    },
-                    "remittanceInformation": {
-                        "unstructured": [
-                            body.remittanceInformation
-                        ]
-                    }
-                }
-            ],
-            "supplementaryData": {
-                "acceptedAuthenticationApproach": [
-                    "REDIRECT",
-                    "DECOUPLED"
-                ],
-                "successfulReportUrl": "http://127.0.0.1:8090/PaymentSuccess",
-                "unsuccessfulReportUrl": "http://127.0.0.1:8090/PaymentFailure"
-            }
-        };
+    makePayment(body, brand) {
+        const paymentString = fixtureParser.parsePayment(body.paymentType, body);
         const options = {
             method: 'POST',
             url: `${appConfig.apiURL}/psd2/v2/payment-requests?brand=${brand}`,
@@ -143,7 +38,7 @@ export default class PaymentRouter {
                 'Signature': '<Base64(RSA-SHA256(signing string))>',
                 'X-Request-ID': '<X-Request-ID>'
             },
-            body: JSON.stringify(data),
+            body: paymentString,
             createXHR: () => new XMLHttpRequest()
         };
 
@@ -159,7 +54,7 @@ export default class PaymentRouter {
         )
     }
 
-    static authenticateClient() {
+    authenticateClient() {
         const formData = {
             grant_type: 'client_credentials',
             scope: 'aisp;pisp',
@@ -186,3 +81,5 @@ export default class PaymentRouter {
         )
     }
 }
+
+export default new PaymentRouter()
