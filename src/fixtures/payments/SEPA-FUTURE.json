@@ -1,0 +1,104 @@
+{
+	"paymentInformationId": "MyPmtInfId",
+	"creationDateTime": "{{now}}",
+	"requestedExecutionDate": "{{requestedExecutionDate}}",
+	"numberOfTransactions": 1,
+	"initiatingParty": {
+		"name": "DemoApp",
+		"postalAddress": {
+			"country": "BE",
+			"addressLine": [
+				"18 rue haute",
+				"1000 Bruxelles"
+			]
+		},
+		"organisationId": {
+			"identification": "12BE5",
+			"schemeName": "COID",
+			"issuer": "ACPR"
+		}
+	},
+	"paymentTypeInformation": {
+		"serviceLevel": "SEPA"
+	},
+	"debtor": {
+		"name": "Isaac Newton",
+		"postalAddress": {
+			"country": "BE",
+			"addressLine": [
+				"18 rue haute",
+				"1000 Bruxelles"
+			]
+		},
+		"privateId": {
+			"identification": "FD37G",
+			"schemeName": "BANK",
+			"issuer": "BICXYYTTZZZ"
+		}
+	},
+	"debtorAccount": {
+		"iban": "{{debtorAccount}}"
+	},
+	"beneficiary": {
+		"creditor": {
+			"name": "{{beneficiaryName}}",
+			"postalAddress": {
+				"country": "BE",
+				"addressLine": [
+					"20 rue haute",
+					"1000 Bruxelles"
+				]
+			},
+			"organisationId": {
+				"identification": "852126789",
+				"schemeName": "SREN",
+				"issuer": "FR"
+			}
+		},
+		"creditorAccount": {
+			"iban": "{{beneficiaryAccount}}"
+		}
+	},
+	"ultimateCreditor": {
+		"name": "myPreferedUltimateMerchant",
+		"postalAddress": {
+			"country": "BE",
+			"addressLine": [
+				"20 rue haute",
+				"1000 Bruxelles"
+			]
+		},
+		"organisationId": {
+			"identification": "85212678900025",
+			"schemeName": "SRET",
+			"issuer": "FR"
+		}
+	},
+	"purpose": "COMC",
+	"chargeBearer": "SLEV",
+	"creditTransferTransaction": [
+		{
+			"paymentId": {
+				"instructionId": "MyInstrId",
+				"endToEndId": "MyEndToEndId"
+			},
+			"instructedAmount": {
+				"currency": "EUR",
+				"amount": "{{amount}}"
+			},
+			"remittanceInformation": {
+				"unstructured": [
+					"{{remittanceInformation}}"
+				]
+			}
+		}
+	],
+	"supplementaryData": {
+		"acceptedAuthenticationApproach": [
+			"REDIRECT",
+			"DECOUPLED"
+		],
+		"successfulReportUrl": "http://127.0.0.1:8090/PaymentSuccess",
+		"unsuccessfulReportUrl": "http://127.0.0.1:8090/PaymentFailure"
+	}
+}

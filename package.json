@@ -6,10 +6,10 @@
   "scripts": {
     "build": "tsc",
     "start-proxy": "node proxy",
-    "dev": "export SANDBOX_ENV=DEV && concurrently --kill-others \"npm run start-proxy\" \"nodemon --inspect=9235\" ",
-    "tst": "export SANDBOX_ENV=TST && concurrently --kill-others \"npm run start-proxy\" \"nodemon\" ",
-    "qa": "export SANDBOX_ENV=QA && concurrently --kill-others \"npm run start-proxy\" \"nodemon\"",
-    "prod": "export SANDBOX_ENV=PROD && concurrently --kill-others \"npm run start-proxy\" \"nodemon\"",
+    "dev": "export SANDBOX_ENV=DEV && concurrently --kill-others \"npm run start-proxy\" \"nodemon --inspect=9235 src/index.ts\" ",
+    "tst": "export SANDBOX_ENV=TST && concurrently --kill-others \"npm run start-proxy\" \"nodemon src/index.ts\" ",
+    "qa": "export SANDBOX_ENV=QA && concurrently --kill-others \"npm run start-proxy\" \"nodemon src/index.ts\"",
+    "prod": "export SANDBOX_ENV=PROD && concurrently --kill-others \"npm run start-proxy\" \"nodemon src/index.ts\"",
     "tsc": "tsc",
     "serve": "nodemon dist",
     "lint": "eslint . --ext .ts",
@@ -43,7 +43,7 @@
   "dependencies": {
     "http-proxy": "1.18.1",
     "rxjs": "6.6.6",
-    "http-proxy": "1.18.1",
+    "simple-placeholder-replacer": "^1.1.0",
     "xmlhttprequest": "1.8.0"
   }
 }
