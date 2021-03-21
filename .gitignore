@@ -2,6 +2,7 @@
 dist
 node_modules
 .nyc_output
+coverage
 
 proxy/cert
 src/config/envs.ts
