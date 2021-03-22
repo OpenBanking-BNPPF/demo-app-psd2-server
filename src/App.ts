@@ -37,7 +37,7 @@ class App {
             })
         });
 
-        this.app.use((err: Error & { status: number }, request: express.Request, response: express.Response): void => {
+        this.app.use((err: Error & { status: number }, request: express.Request, response: express.Response, next: express.NextFunction): void => {
             response.status(err.status || 500);
             response.json({
                 error: "Server error"
