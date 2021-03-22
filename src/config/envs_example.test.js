@@ -1,5 +1,5 @@
 const assert = require('assert');
-const envs = require('../src/config/envs_example')
+const envs = require('./envs_example')
 
 describe('Load envs', function () {
 
