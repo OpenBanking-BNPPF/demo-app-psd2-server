@@ -1,9 +1,16 @@
 {
-  "name": "ob-api-demo-app",
+  "name": "ob-demo-app-server",
   "version": "1.0.0",
   "description": "",
+  "author": "The API Sandbox team",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenBanking-BNPPF/demo-app-psd2-server.git"
+  },
   "main": "index.js",
   "scripts": {
+    "audit-at-commit": "npm audit",
     "build": "tsc",
     "start-proxy": "node proxy",
     "dev": "export SANDBOX_ENV=DEV && concurrently --kill-others \"npm run start-proxy\" \"nodemon --inspect=9235 src/index.ts\" ",
@@ -12,18 +19,28 @@
     "prod": "export SANDBOX_ENV=PROD && concurrently --kill-others \"npm run start-proxy\" \"nodemon src/index.ts\"",
     "tsc": "tsc",
     "serve": "nodemon dist",
-    "lint": "eslint . --ext .ts",
-    "test": "ts-mocha",
-    "test-with-coverage": "nyc ts-mocha",
-    "publish-coverage": "npm run test-with-coverage && nyc report --reporter=text-lcov | coveralls"
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage --colors",
+    "lint": "eslint src/",
+    "publish-coverage": "npm run test:coverage && cat ./coverage/lcov.info | coveralls"
   },
-  "author": "",
-  "license": "ISC",
+  "pre-commit": [
+    "test",
+    "lint",
+    "audit-at-commit"
+  ],
+  "dependencies": {
+    "http-proxy": "1.18.1",
+    "rxjs": "6.6.6",
+    "simple-placeholder-replacer": "^1.1.0",
+    "xmlhttprequest": "1.8.0"
+  },
   "devDependencies": {
     "@types/body-parser": "1.19.0",
     "@types/expect": "24.3.0",
     "@types/express": "4.16.1",
-    "@types/mocha": "8.2.1",
+    "@types/jest": "26.0.21",
     "@types/node": "11.15.47",
     "@typescript-eslint/eslint-plugin": "4.16.1",
     "@typescript-eslint/parser": "4.16.1",
@@ -33,17 +50,12 @@
     "coveralls": "3.1.0",
     "eslint": "7.21.0",
     "express": "4.16.4",
-    "mocha": "8.3.0",
+    "jest": "26.6.3",
     "nodemon": "2.0.7",
     "nyc": "15.1.0",
-    "ts-mocha": "8.0.0",
+    "pre-commit": "^1.2.2",
+    "ts-jest": "26.5.4",
     "ts-node": "9.1.1",
-    "typescript": "3.3.3"
-  },
-  "dependencies": {
-    "http-proxy": "1.18.1",
-    "rxjs": "6.6.6",
-    "simple-placeholder-replacer": "^1.1.0",
-    "xmlhttprequest": "1.8.0"
+    "typescript": "4.2.3"
   }
 }

@@ -1,5 +1,5 @@
 import * as replace from 'simple-placeholder-replacer'
-import { readFileSync } from 'fs';
+import { readFileSync } from 'fs'
 
 
 class Parser {
