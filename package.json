@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "http-proxy": "1.18.1",
-    "rxjs": "6.6.6",
+    "rxjs": "6.6.7",
     "simple-placeholder-replacer": "^1.1.0",
     "xmlhttprequest": "1.8.0"
   }
