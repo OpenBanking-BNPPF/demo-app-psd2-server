@@ -1,3 +1,5 @@
+Upgraded to PSD2-v3
+
 [![Build Status](https://travis-ci.com/OpenBanking-BNPPF/demo-app-psd2-server.svg?branch=master)](https://travis-ci.com/github/OpenBanking-BNPPF/demo-app-psd2-server)
 [![Coverage Status](https://coveralls.io/repos/github/OpenBanking-BNPPF/demo-app-psd2-server/badge.svg?branch=master)](https://coveralls.io/github/OpenBanking-BNPPF/demo-app-psd2-server)
 [![Known Vulnerabilities](https://snyk.io/test/github/OpenBanking-BNPPF/demo-app-psd2-server/badge.svg)](https://snyk.io/test/github/OpenBanking-BNPPF/demo-app-psd2-server)
