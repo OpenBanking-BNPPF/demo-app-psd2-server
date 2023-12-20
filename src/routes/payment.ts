@@ -31,12 +31,13 @@ class PaymentRouter {
         const paymentString = fixtureParser.parsePayment(body.paymentType, body);
         const options = {
             method: 'POST',
-            url: `${appConfig.apiURL}/psd2/v2/payment-requests?brand=${brand}`,
+            url: `${appConfig.apiURL}/psd2/v3/payment-requests?brand=${brand}`,
             headers: {
                 'Authorization': `Bearer ${body.access_token}`,
                 'Content-Type': 'application/json',
                 'Signature': '<Base64(RSA-SHA256(signing string))>',
-                'X-Request-ID': '<X-Request-ID>'
+                'X-Request-ID': '<X-Request-ID>',
+                businessLineName: 'RPB'
             },
             body: paymentString,
             createXHR: () => new XMLHttpRequest()

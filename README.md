@@ -20,7 +20,7 @@ npm install
 ```
 
 ## How to configure it ?
-- Open the file src/config/config.ts
+- Create the file src/config/envs.ts similar to envs_example.ts
 - Fill in the correct data.
 
 example of a configuration used to connect to the test environment of the sandbox
@@ -41,7 +41,7 @@ const appConfig = {
 run the node server using
 ```bash
 npm run build
-npm run dev
+npm run prod
 ```
 this will start the server on port 8081 and a proxy for the api calls on port 9000
 

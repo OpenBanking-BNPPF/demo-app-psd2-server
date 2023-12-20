@@ -6,10 +6,8 @@
   "scripts": {
     "build": "tsc",
     "start-proxy": "node proxy",
-    "dev": "export SANDBOX_ENV=DEV && concurrently --kill-others \"npm run start-proxy\" \"nodemon --inspect=9235 src/index.ts\" ",
-    "tst": "export SANDBOX_ENV=TST && concurrently --kill-others \"npm run start-proxy\" \"nodemon src/index.ts\" ",
-    "qa": "export SANDBOX_ENV=QA && concurrently --kill-others \"npm run start-proxy\" \"nodemon src/index.ts\"",
-    "prod": "export SANDBOX_ENV=PROD && concurrently --kill-others \"npm run start-proxy\" \"nodemon src/index.ts\"",
+    "local": "export SANDBOX_ENV=LOCAL && nodemon src/index.ts" ,
+    "prod":  "export SANDBOX_ENV=PROD  && nodemon src/index.ts",
     "tsc": "tsc",
     "serve": "nodemon dist",
     "lint": "eslint . --ext .ts",
