@@ -29,6 +29,7 @@
     "eslint": "7.21.0",
     "mocha": "8.3.0",
     "nodemon": "2.0.7",
+    "nyc": "^15.1.0",
     "ts-mocha": "8.0.0",
     "ts-node": "10.9.2",
     "typescript": "5.3.3"
