@@ -8,6 +8,7 @@ Upgraded to PSD2-v3
 ===========
 
 This node js app can be used in order to interact with the open bank sandbox.
+This project works fine on node 20.
 
 ## How to install it ?
 

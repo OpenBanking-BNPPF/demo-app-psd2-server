@@ -21,8 +21,8 @@ export default class AccountsRouter {
             })
             .get('/balances', (req: Request, res: Response) => {
                 const accessToken = req.headers.authorization;
-                const accountResourceId = req.query.accountResourceId;
-                const brand = req.query.brand;
+                const accountResourceId = req.query.accountResourceId as string;
+                const brand = req.query.brand as string;
                 this.getBalances(accessToken, brand, accountResourceId).subscribe(
                     balances => res.send(balances),
                     err => res.status(500).send(err)
@@ -30,8 +30,8 @@ export default class AccountsRouter {
             })
             .get('/transactions', (req: Request, res: Response) => {
                 const accessToken = req.headers.authorization;
-                const accountResourceId = req.query.accountResourceId;
-                const brand = req.query.brand;
+                const accountResourceId = req.query.accountResourceId as string;
+                const brand = req.query.brand as string;
                 this.getTransactions(accessToken, brand, accountResourceId).subscribe(
                     transactions => res.send(transactions),
                     err => res.status(500).send(err)
