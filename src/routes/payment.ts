@@ -5,6 +5,7 @@ import { throwError } from 'rxjs';
 import { appConfig } from '../config';
 import * as xMLHttpRequest from 'xmlhttprequest';
 import fixtureParser from '../fixtures/Parser'
+import { Resource } from '../types/resource';
 
 const XMLHttpRequest = xMLHttpRequest.XMLHttpRequest;
 
@@ -43,7 +44,7 @@ class PaymentRouter {
             createXHR: () => new XMLHttpRequest()
         };
 
-        return ajax(options).pipe(
+        return ajax<Resource>(options).pipe(
             map(resp => {
                 const href = resp.response._links.consentApproval.href
                 return href
