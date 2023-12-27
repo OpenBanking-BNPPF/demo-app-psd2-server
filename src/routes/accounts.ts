@@ -1,11 +1,10 @@
 import {Router, Request, Response} from 'express';
 import {ajax} from 'rxjs/ajax';
 import {map, catchError} from 'rxjs/operators';
-import {throwError} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {appConfig} from '../config'; 
-import * as xMLHttpRequest from 'xmlhttprequest';
-
-const XMLHttpRequest = xMLHttpRequest.XMLHttpRequest;
+import { XMLHttpRequest } from 'xhr2';
+import { Resource } from '../types/resource';
 
 export default class AccountsRouter {
 
@@ -53,7 +52,7 @@ export default class AccountsRouter {
             )
     }
 
-    static getResource(url, accessToken) {
+    static getResource(url, accessToken): Observable<Resource> {
         const options = {
             method: 'GET',
             url,
@@ -64,11 +63,11 @@ export default class AccountsRouter {
             },
             createXHR: () => new XMLHttpRequest()
         };
-        return ajax(options).pipe(
+        return ajax<Resource>(options).pipe(
             map(data => data.response),
             catchError(err => {
                 console.error(err);
-                return throwError(err)
+                return throwError(() => err)
             })
         )
     }
@@ -84,13 +83,13 @@ export default class AccountsRouter {
             },
             createXHR: () => new XMLHttpRequest()
         }; 
-        return ajax(options).pipe(
+        return ajax<Resource>(options).pipe(
             map(data => {
                 return data.response.accounts
             }),
             catchError(err => {
                 console.error(err);
-                return throwError(err)
+                return throwError(() => err)
             })
         )
     }

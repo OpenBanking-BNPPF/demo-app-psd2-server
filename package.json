@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "getToken": "nodemon src/getToken.ts",
     "local": "export SANDBOX_ENV=LOCAL && nodemon src/index.ts",
     "prod": "export SANDBOX_ENV=PROD  && nodemon src/index.ts",
     "tsc": "tsc",
@@ -31,8 +32,8 @@
     "body-parser": "1.20.2",
     "cors": "2.8.5",
     "express": "4.18.2",
-    "rxjs": "6.6.6",
+    "rxjs": "7.8.1",
     "simple-placeholder-replacer": "^1.1.0",
-    "xmlhttprequest": "1.8.0"
+    "xhr2": "0.2.1"
   }
 }

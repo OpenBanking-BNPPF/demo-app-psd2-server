@@ -2,10 +2,12 @@ import {Router, Request, Response} from 'express';
 import {ajax} from 'rxjs/ajax';
 import {map} from 'rxjs/operators';
 import {appConfig} from '../config';
-import {catchError} from 'rxjs/internal/operators';
-import {throwError} from 'rxjs';
-import * as xMLHttpRequest from 'xmlhttprequest';
-const XMLHttpRequest = xMLHttpRequest.XMLHttpRequest;
+import {throwError, catchError, config} from 'rxjs';
+import { XMLHttpRequest } from 'xhr2';
+
+config.onUnhandledError = (err) => {
+    console.warn(err)
+}
 
 export default class AuthRouter {
 
@@ -36,9 +38,6 @@ export default class AuthRouter {
         const options = {
             method: 'POST',
             url: `${appConfig.authURL}/token`,
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
             createXHR: () => new XMLHttpRequest(),
             //body: JSON.stringify(formData),
             body: formData,
@@ -47,7 +46,7 @@ export default class AuthRouter {
             map(data => data.response),
             catchError(err => {
                 console.error('err', err);
-                return throwError(err)
+                return throwError(() => err)
             })
         )
     }

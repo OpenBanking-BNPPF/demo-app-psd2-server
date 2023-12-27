@@ -3,10 +3,9 @@ import { ajax } from 'rxjs/ajax';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { appConfig } from '../config';
-import * as xMLHttpRequest from 'xmlhttprequest';
+import { XMLHttpRequest } from 'xhr2';
 import fixtureParser from '../fixtures/Parser'
-
-const XMLHttpRequest = xMLHttpRequest.XMLHttpRequest;
+import { Resource } from '../types/resource';
 
 class PaymentRouter {
 
@@ -43,14 +42,14 @@ class PaymentRouter {
             createXHR: () => new XMLHttpRequest()
         };
 
-        return ajax(options).pipe(
+        return ajax<Resource>(options).pipe(
             map(resp => {
                 const href = resp.response._links.consentApproval.href
                 return href
             }),
             catchError(err => {
                 console.error(err);
-                return throwError(err)
+                return throwError(() => err)
             })
         )
     }
@@ -66,9 +65,6 @@ class PaymentRouter {
         const options = {
             method: 'POST',
             url: `${appConfig.authURL}/token`,
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
             body: formData,
             createXHR: () => new XMLHttpRequest()
         };
@@ -77,7 +73,7 @@ class PaymentRouter {
             map(data => data.response),
             catchError(err => {
                 console.error(err);
-                return throwError(err)
+                return throwError(() => err)
             })
         )
     }
