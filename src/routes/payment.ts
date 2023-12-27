@@ -22,7 +22,7 @@ class PaymentRouter {
                 const brand = req.query.brand;
                 this.makePayment(req.body, brand).subscribe(
                     resp => res.send(resp),
-                    err => res.status(err.status).send(err)
+                    err => res.status(err.status).send(err.response.message || 'Unknown error')
                 )
             })
     }
