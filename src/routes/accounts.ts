@@ -1,12 +1,10 @@
 import {Router, Request, Response} from 'express';
-import {ajax, AjaxResponse} from 'rxjs/ajax';
+import {ajax} from 'rxjs/ajax';
 import {map, catchError} from 'rxjs/operators';
 import {Observable, throwError} from 'rxjs';
 import {appConfig} from '../config'; 
-import * as xMLHttpRequest from 'xmlhttprequest';
+import { XMLHttpRequest } from 'xhr2';
 import { Resource } from '../types/resource';
-
-const XMLHttpRequest = xMLHttpRequest.XMLHttpRequest;
 
 export default class AccountsRouter {
 
@@ -91,7 +89,7 @@ export default class AccountsRouter {
             }),
             catchError(err => {
                 console.error(err);
-                return throwError(err)
+                return throwError(() => err)
             })
         )
     }

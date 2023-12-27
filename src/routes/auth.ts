@@ -3,8 +3,7 @@ import {ajax} from 'rxjs/ajax';
 import {map} from 'rxjs/operators';
 import {appConfig} from '../config';
 import {throwError, catchError, config} from 'rxjs';
-import * as xMLHttpRequest from 'xmlhttprequest';
-const XMLHttpRequest = xMLHttpRequest.XMLHttpRequest;
+import { XMLHttpRequest } from 'xhr2';
 
 config.onUnhandledError = (err) => {
     console.warn(err)
