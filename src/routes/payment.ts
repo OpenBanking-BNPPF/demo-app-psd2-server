@@ -30,7 +30,7 @@ class PaymentRouter {
         const paymentString = fixtureParser.parsePayment(body.paymentType, body);
         const options = {
             method: 'POST',
-            url: `${appConfig.apiURL}/psd2/v3/payment-requests?brand=${brand}`,
+            url: `${appConfig.apiURL}/psd2/v4/payment-requests?brand=${brand}`,
             headers: {
                 'Authorization': `Bearer ${body.access_token}`,
                 'Content-Type': 'application/json',

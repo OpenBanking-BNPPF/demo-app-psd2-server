@@ -5,13 +5,6 @@
 	"numberOfTransactions": 1,
 	"initiatingParty": {
 		"name": "DemoApp",
-		"postalAddress": {
-			"country": "BE",
-			"addressLine": [
-				"18 rue haute",
-				"1000 Bruxelles"
-			]
-		},
 		"organisationId": {
 			"identification": "12BE5",
 			"schemeName": "COID",
@@ -24,13 +17,6 @@
 	},
 	"debtor": {
 		"name": "Isaac Newton",
-		"postalAddress": {
-			"country": "BE",
-			"addressLine": [
-				"18 rue haute",
-				"1000 Bruxelles"
-			]
-		},
 		"privateId": {
 			"identification": "FD37G",
 			"schemeName": "BANK",

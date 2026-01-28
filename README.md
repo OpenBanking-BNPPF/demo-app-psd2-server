@@ -1,4 +1,4 @@
-Upgraded to PSD2-v3 
+Upgraded to PSD2-v4
 
 [![Build Status](https://travis-ci.com/OpenBanking-BNPPF/demo-app-psd2-server.svg?branch=master)](https://travis-ci.com/github/OpenBanking-BNPPF/demo-app-psd2-server)
 [![Coverage Status](https://coveralls.io/repos/github/OpenBanking-BNPPF/demo-app-psd2-server/badge.svg?branch=master)](https://coveralls.io/github/OpenBanking-BNPPF/demo-app-psd2-server)
