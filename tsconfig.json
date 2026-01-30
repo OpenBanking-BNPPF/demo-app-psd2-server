@@ -3,12 +3,14 @@
     "target": "es6",
     "module": "commonjs",
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": true,
+    "strict": false,                  /* Enable strict type-checking (recommended) */
+    "esModuleInterop": true,        /* Fixes CommonJS/ESM interop issues */
+    "skipLibCheck": true,            /* Skip type-checking of declaration files (faster builds) */
+    "forceConsistentCasingInFileNames": true,  /* Avoid case-sensitive path issues */
+    "typeRoots": ["./node_modules/@types"],  /* Explicitly point to @types */
+    "types": ["node"]                /* Auto-detect other @types (e.g., express) */
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 }
