@@ -30,7 +30,7 @@
     "body-parser": "2.2.2",
     "cors": "2.8.5",
     "express": "4.22.1",
-    "rxjs": "7.8.1",
+    "rxjs": "7.8.2",
     "simple-placeholder-replacer": "^1.1.0",
     "xhr2": "0.2.1"
   }
