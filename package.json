@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "body-parser": "2.2.2",
-    "cors": "2.8.5",
+    "cors": "2.8.6",
     "express": "4.22.1",
     "rxjs": "7.8.1",
     "simple-placeholder-replacer": "^1.1.0",
