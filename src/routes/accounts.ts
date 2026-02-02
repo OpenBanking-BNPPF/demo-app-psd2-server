@@ -39,14 +39,14 @@ export default class AccountsRouter {
     }
 
     static getBalances(accessToken: string, brand: string, accountResourceId: string) {
-        return this.getResource(`${appConfig.apiURL}/psd2/v3/accounts/${accountResourceId}/balances?brand=${brand}`, accessToken)
+        return this.getResource(`${appConfig.apiURL}/psd2/v4/accounts/${accountResourceId}/balances?brand=${brand}`, accessToken)
             .pipe(
                 map(data => data.balances)
             )
     }
 
     static getTransactions(accessToken: string, brand: string, accountResourceId: string) {
-        return this.getResource(`${appConfig.apiURL}/psd2/v3/accounts/${accountResourceId}/transactions?brand=${brand}`, accessToken)
+        return this.getResource(`${appConfig.apiURL}/psd2/v4/accounts/${accountResourceId}/transactions?brand=${brand}`, accessToken)
             .pipe(
                 map(data => data && data.transactions ? data.transactions : [])
             )
@@ -75,7 +75,7 @@ export default class AccountsRouter {
     static getAccounts(accessToken, brand) {
         const options = {
             method: 'GET',
-            url: `${appConfig.apiURL}/psd2/v3/accounts?brand=${brand}`,
+            url: `${appConfig.apiURL}/psd2/v4/accounts?brand=${brand}`,
             headers: {
                 'Authorization': `${accessToken}`,
                 'Signature': 'toto',

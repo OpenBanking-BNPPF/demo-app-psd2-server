@@ -1,4 +1,4 @@
-import * as replace from 'simple-placeholder-replacer'
+import replace from 'simple-placeholder-replacer'
 import { readFileSync } from 'fs';
 
 
