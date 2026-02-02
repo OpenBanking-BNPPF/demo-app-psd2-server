@@ -1,7 +1,6 @@
 Upgraded to PSD2-v4
 
-[![Build Status](https://travis-ci.com/OpenBanking-BNPPF/demo-app-psd2-server.svg?branch=master)](https://travis-ci.com/github/OpenBanking-BNPPF/demo-app-psd2-server)
-[![Coverage Status](https://coveralls.io/repos/github/OpenBanking-BNPPF/demo-app-psd2-server/badge.svg?branch=master)](https://coveralls.io/github/OpenBanking-BNPPF/demo-app-psd2-server)
+[![Build Status][![Node.js CI](https://github.com/OpenBanking-BNPPF/demo-app-psd2-server/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/OpenBanking-BNPPF/demo-app-psd2-server/actions/workflows/node.js.yml)
 [![Known Vulnerabilities](https://snyk.io/test/github/OpenBanking-BNPPF/demo-app-psd2-server/badge.svg)](https://snyk.io/test/github/OpenBanking-BNPPF/demo-app-psd2-server)
 
 # OPEN BANK API - DEMO APP
